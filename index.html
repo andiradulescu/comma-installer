@@ -1,19 +1,8 @@
 #!/bin/bash -e
+#
+# Usage: curl openpilot.my.id | bash
+#
+# Usage with TTY: bash -c "$(curl -fsSL openpilot.my.id)"
+#
 
-if [ ! -d openpilot ]; then
-  git clone --recurse-submodules https://github.com/commaai/openpilot.git
-fi
-
-cd openpilot
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  tools/mac_setup.sh
-else
-  tools/ubuntu_setup.sh
-fi
-
-git lfs pull
-
-source .venv/bin/activate
-
-scons -u -j$(nproc)
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/andiradulescu/openpilot/curl-bash-install-script/tools/setup.sh)"
